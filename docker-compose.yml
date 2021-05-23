@@ -1,0 +1,10 @@
+version: '3.4'
+services:
+  serialconnector:
+    image: serialconnector
+    build:
+      context: ./.devcontainer
+      dockerfile: ./Dockerfile
+    volumes: 
+      - ${PWD}/workspace:/workspace
+      - /var/run/docker.sock:/var/run/docker.sock
