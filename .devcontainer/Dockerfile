@@ -23,4 +23,10 @@ RUN echo 'alias cbd="cross build --target armv7-unknown-linux-gnueabihf"' >> /ho
 #set alias for cross build release
 RUN echo 'alias cbr="cross build --release --target armv7-unknown-linux-gnueabihf"' >> /home/vscode/.bashrc
 
-CMD ["tail", "-f", "/dev/null"]
+#add cargo upload command to path
+RUN mkdir /home/vscode/bin && echo 'export PATH="/home/vscode/bin:$PATH"' >> /home/vscode/.bashrc
+COPY ./scripts/cargo-upload /home/vscode/bin/cargo-upload
+RUN chown vscode /home/vscode/bin/cargo-upload && chmod +x /home/vscode/bin/cargo-upload
+
+# fix permissions before starting container, keep open using tail /dev/null
+CMD ["sh", "-c", "sudo chown -R vscode /usr/local/cargo/ && sudo usermod -aG docker vscode && tail -f /dev/null"]

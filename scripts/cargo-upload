@@ -1,0 +1,4 @@
+#!/bin/bash
+cargo build && \ 
+cross build --target armv7-unknown-linux-gnueabihf && \
+echo "uploaded project to raspberry pi!"

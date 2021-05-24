@@ -1,11 +1,9 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.177.0/containers/rust
 {
 	"dockerComposeFile": "../docker-compose.yml",
 	"service": "serialconnector",
 	"workspaceFolder": "/workspace/serial_connector",
 	// Set *default* container specific settings.json values on container create.
-	"settings": { 
+	"settings": {
 		"terminal.integrated.shell.linux": "/bin/bash",
 		"lldb.executable": "/usr/bin/lldb",
 		// VS Code don't watch files under ./target
@@ -13,7 +11,6 @@
 			"**/target/**": true
 		}
 	},
-
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
 		"rust-lang.rust",
@@ -21,13 +18,10 @@
 		"vadimcn.vscode-lldb",
 		"mutantdino.resourcemonitor"
 	],
-
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
-
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "sudo chown -R vscode /usr/local/cargo/",
-
+	// "postCreateCommand": "rustc --version",
 	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode"
 }
