@@ -14,7 +14,8 @@ curl -L "https://update.code.visualstudio.com/latest/server-linux-x64/stable" -o
 tar xvf "/tmp/${archive}" --strip-components=1 -C /tmp/ vscode-server-linux-x64/product.json
 
 # Set commit sha
-commit_sha=$(cat /tmp/product.json | grep -zoP '"commit":\s*\K[^\s,]*(?=\s*,)')
+commit_sha=$(cat /tmp/product.json | python -c \
+    'import json,sys;print json.load(sys.stdin)["commit"]')
 echo "found vscode server sha: ${commit_sha}"
 
 # Make the parent directory where the server should live.
